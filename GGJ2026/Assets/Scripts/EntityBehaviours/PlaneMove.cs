@@ -110,8 +110,7 @@ public class PlaneMove : MonoBehaviour
         Vector3 neededAccel = goalVel - rb.linearVelocity;
         neededAccel -= Vector3.up * neededAccel.y;
 
-        bool isBraking = dir == Vector3.zero? false : Vector3.Dot(dir, rb.linearVelocity) < brakeAlignment;
-        if (isBraking) Debug.Log("TRUEEEE");
+        bool isBraking = dir == Vector3.zero? true : Vector3.Dot(dir, rb.linearVelocity) < brakeAlignment;
         float usedDeaccel = maxDesAccel;
         if (gravity.GetIsGrounded()) {
             usedDeaccel = isBraking? usedDeaccel * brakeStrength : usedDeaccel;
