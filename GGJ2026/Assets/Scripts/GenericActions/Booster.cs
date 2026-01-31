@@ -11,6 +11,7 @@ public class Booster : MonoBehaviour
     [SerializeField] private float maxSpeed = float.PositiveInfinity;
 
     [SerializeField] private GameObject target;
+    [SerializeField] private GameObjectVariable targetVariable;
     [SerializeField] private bool active = true;
     [SerializeField] private float lastVelocity;
 
@@ -20,6 +21,19 @@ public class Booster : MonoBehaviour
     public void SetTarget(GameObject value)
     {
         target = value;
+    }
+
+    public void SetTarget(GameObjectVariable value)
+    {
+        target = value.Value;
+    }
+
+    private void Start()
+    {
+        if (target == null && targetVariable.Value != null)
+        {
+            target = targetVariable.Value;
+        }
     }
 
     public void SetActive(bool value)

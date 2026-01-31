@@ -58,14 +58,14 @@ public class CameraMovement : MonoBehaviour
 
         // Updating camera rotation
         Vector2 scaledLook = _lookDirection.direction * sensitivity.Value;
-        if (invertY.Value)
-        {
-            scaledLook.x = -scaledLook.x;
-        }
-        if (invertX.Value)
-        {
-            scaledLook.y = -scaledLook.y;
-        }
+        //if (invertY.Value)
+        //{
+        //    scaledLook.x = -scaledLook.x;
+        //}
+        //if (invertX.Value)
+        //{
+        //    scaledLook.y = -scaledLook.y;
+        //}
         _orbitRotation = new Vector2(Mathf.Clamp(_orbitRotation.x - scaledLook.x, angleLimits.x, angleLimits.y), Mathf.Repeat(_orbitRotation.y - scaledLook.y, 360));
 
         // Calculating camera direction
