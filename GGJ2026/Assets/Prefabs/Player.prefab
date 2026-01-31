@@ -5149,14 +5149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ad3d21feb0775458f4bdbd823a74ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: {x: 20, y: 20}
+  force: {x: 12.5, y: 12.5}
   throwable: {fileID: 8588313962130920292}
   target: {fileID: 0}
   targetVariable: {fileID: 11400000, guid: 51557b027cb7969478e9d2eec2513493, type: 2}
   originOffset: {x: 0, y: 0, z: 0}
   originMaxOffSet: {x: 0, y: 0, z: 0}
   originOffsetIsLocal: 0
-  targetOffset: {x: 0, y: 0, z: 0}
+  targetOffset: {x: 0, y: 1.5, z: 0}
   targetMaxOffSet: {x: 0, y: 0, z: 0}
   addForce: 0
   useCenterOfMass: 0
@@ -5366,8 +5366,11 @@ MonoBehaviour:
   maxAccel: 0.8
   maxDesAccel: 0.8
   canControl: 1
-  airDeaccelFalloff: 0.5
+  airDeaccelFalloff: 0.1
   gravity: {fileID: 7154655927816649731}
+  brakeAlignment: -0.1
+  brakeStrength: 1.5
+  brakeAirFalloffReduction: 0.5
 --- !u!1 &9065498892217127143
 GameObject:
   m_ObjectHideFlags: 0

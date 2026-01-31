@@ -25,6 +25,10 @@ public class PlaneMove : MonoBehaviour
     [SerializeField] private float airDeaccelFalloff;
     [SerializeField] private Gravity gravity;
 
+    [SerializeField] private float brakeAlignment;
+    [SerializeField] private float brakeStrength;
+    [SerializeField] private float brakeAirFalloffReduction;
+
     public Action onStartMove;
     public Action onStopMove;
 
@@ -106,10 +110,16 @@ public class PlaneMove : MonoBehaviour
         Vector3 neededAccel = goalVel - rb.linearVelocity;
         neededAccel -= Vector3.up * neededAccel.y;
 
-        bool grounded = gravity.GetIsGrounded();
-        float usedAccel = grounded? maxAccel : maxAccel * airDeaccelFalloff;
-        float usedDeaccel = grounded? maxDesAccel : maxDesAccel * airDeaccelFalloff;
-        neededAccel = dir != Vector3.zero ? Vector3.ClampMagnitude(neededAccel, usedAccel) : Vector3.ClampMagnitude(neededAccel, usedDeaccel);
+        bool isBraking = dir == Vector3.zero? false : Vector3.Dot(dir, rb.linearVelocity) < brakeAlignment;
+        if (isBraking) Debug.Log("TRUEEEE");
+        float usedDeaccel = maxDesAccel;
+        if (gravity.GetIsGrounded()) {
+            usedDeaccel = isBraking? usedDeaccel * brakeStrength : usedDeaccel;
+        } else {
+            usedDeaccel = isBraking? usedDeaccel * brakeStrength * Mathf.Clamp01(airDeaccelFalloff/brakeAirFalloffReduction) : usedDeaccel * airDeaccelFalloff;
+        }
+
+        neededAccel = rb.linearVelocity.magnitude <= goalVel.magnitude ? Vector3.ClampMagnitude(neededAccel, maxAccel) : Vector3.ClampMagnitude(neededAccel, usedDeaccel);
 
         rb.AddForce(neededAccel, ForceMode.Impulse);
         if (dir.magnitude > 0)
