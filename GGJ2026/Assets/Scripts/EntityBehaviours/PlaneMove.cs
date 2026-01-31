@@ -22,6 +22,9 @@ public class PlaneMove : MonoBehaviour
 
     [SerializeField] private bool canControl = true;
 
+    [SerializeField] private float airDeaccelFalloff;
+    [SerializeField] private Gravity gravity;
+
     public Action onStartMove;
     public Action onStopMove;
 
@@ -102,7 +105,12 @@ public class PlaneMove : MonoBehaviour
         Vector3 goalVel = dir * maxSpeed;
         Vector3 neededAccel = goalVel - rb.linearVelocity;
         neededAccel -= Vector3.up * neededAccel.y;
-        neededAccel = dir != Vector3.zero ? Vector3.ClampMagnitude(neededAccel, maxAccel) : Vector3.ClampMagnitude(neededAccel, maxDesAccel);
+
+        bool grounded = gravity.GetIsGrounded();
+        float usedAccel = grounded? maxAccel : maxAccel * airDeaccelFalloff;
+        float usedDeaccel = grounded? maxDesAccel : maxDesAccel * airDeaccelFalloff;
+        neededAccel = dir != Vector3.zero ? Vector3.ClampMagnitude(neededAccel, usedAccel) : Vector3.ClampMagnitude(neededAccel, usedDeaccel);
+
         rb.AddForce(neededAccel, ForceMode.Impulse);
         if (dir.magnitude > 0)
         {

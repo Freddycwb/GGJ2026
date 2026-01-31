@@ -10,6 +10,7 @@ public class Thrower : MonoBehaviour
     [SerializeField] private Vector2 force;
     [SerializeField] private Rigidbody throwable;
     [SerializeField] private Transform target;
+    [SerializeField] private GameObjectVariable targetVariable;
 
     [SerializeField] private Vector3 originOffset;
     [SerializeField] private Vector3 originMaxOffSet;
@@ -23,6 +24,10 @@ public class Thrower : MonoBehaviour
 
     [SerializeField] private float valueAdjuster;
     [SerializeField] private OperatorType.Type valueAdjustType;
+
+    private void Start() {
+        if (target == null && targetVariable.Value != null) target = targetVariable.Value.transform;
+    }
 
     public float GetForceX()
     {
