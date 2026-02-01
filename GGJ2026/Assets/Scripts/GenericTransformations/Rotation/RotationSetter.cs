@@ -19,7 +19,7 @@ public class RotationSetter : MonoBehaviour
 
     private void Awake()
     {
-        if (objectToRotate == null) 
+        if (objectToRotate == null)
         {
             objectToRotate = gameObject;
         }
@@ -40,7 +40,11 @@ public class RotationSetter : MonoBehaviour
         if (reference != null)
         {
             SetRotationToReference(reference);
-        }        
+        }
+    }
+    public void SetRotationToReference(GameObjectVariable value)
+    {
+        SetRotationToReference(value.Value);
     }
 
     public void SetRotationToReference(GameObject value)
