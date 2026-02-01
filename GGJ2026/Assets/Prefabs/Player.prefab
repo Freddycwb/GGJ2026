@@ -5007,14 +5007,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ad3d21feb0775458f4bdbd823a74ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: {x: 25, y: 25}
+  force: {x: 30, y: 30}
   throwable: {fileID: 8588313962130920292}
   target: {fileID: 0}
   targetVariable: {fileID: 11400000, guid: 51557b027cb7969478e9d2eec2513493, type: 2}
   originOffset: {x: 0, y: 0, z: 0}
   originMaxOffSet: {x: 0, y: 0, z: 0}
   originOffsetIsLocal: 0
-  targetOffset: {x: 0, y: 1.5, z: 0}
+  targetOffset: {x: 0, y: 4, z: 0}
   targetMaxOffSet: {x: 0, y: 0, z: 0}
   addForce: 0
   useCenterOfMass: 0
@@ -12281,14 +12281,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ad3d21feb0775458f4bdbd823a74ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: {x: 12.5, y: 12.5}
+  force: {x: 15, y: 15}
   throwable: {fileID: 8588313962130920292}
   target: {fileID: 0}
   targetVariable: {fileID: 11400000, guid: 51557b027cb7969478e9d2eec2513493, type: 2}
   originOffset: {x: 0, y: 0, z: 0}
   originMaxOffSet: {x: 0, y: 0, z: 0}
   originOffsetIsLocal: 0
-  targetOffset: {x: 0, y: 1.5, z: 0}
+  targetOffset: {x: 0, y: 4, z: 0}
   targetMaxOffSet: {x: 0, y: 0, z: 0}
   addForce: 0
   useCenterOfMass: 0

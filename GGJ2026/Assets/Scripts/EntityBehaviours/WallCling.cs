@@ -26,8 +26,15 @@ public class WallCling : MonoBehaviour
         RaycastHit hit;
         bool clinged = Physics.Raycast(origin.transform.position, (target.transform.position - origin.transform.position).normalized, out hit, rayDistance, layer);
 
-        if (_wasClinged && !clinged) released?.Invoke();
-        if (!_wasClinged && clinged) grabbed?.Invoke();
+        if (_wasClinged && !clinged) {
+            released?.Invoke();
+            gravity.onTakeOff?.Invoke();
+        }
+
+        if (!_wasClinged && clinged) {
+            grabbed?.Invoke();
+            gravity.onLand?.Invoke();
+        }
 
         _wasClinged = clinged;
         if (!clinged) {
@@ -37,7 +44,7 @@ public class WallCling : MonoBehaviour
 
         lastNormal = hit.normal;
         gravity.SetIsGrounded(true);
-        
+        gravity.onLand?.Invoke();
     }
 
     public void ResetClingedState() {
