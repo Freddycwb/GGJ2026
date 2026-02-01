@@ -141,6 +141,10 @@ public class Thrower : MonoBehaviour
         rb.AddForce(dir.linearVelocity.normalized * GetThrowForce(), ForceMode.Impulse);
     }
 
+    public void Throw(WallCling cling) {
+        Throw(throwable, target.position + cling.lastNormal, addForce);
+    }
+
     public void SetValueAdjuster(DamageChecker value)
     {
         valueAdjuster = value.GetLastDamage();
